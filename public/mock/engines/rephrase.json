@@ -1,0 +1,12 @@
+{
+  "engine": "Rephrase",
+  "version": "rephrase-0.1-mock",
+  "description": "Normalizes tone, detects adversarial phrasing, and preserves intent.",
+  "normalized_input": "The user is requesting a clear explanation of the system result.",
+  "adversarial_risk_score": 0.12,
+  "tone_drift_score": 0.08,
+  "expressive_alignment_score": 0.94,
+  "manipulation_indicators": [],
+  "correction_level": 1,
+  "signals": { "intent_preserved": true, "semantic_shift_detected": false }
+}
