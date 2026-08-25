@@ -1,0 +1,1 @@
+{"engine":"Codex","version":"codex-0.1-mock","description":"Scans generated code for policy and safety signals.","signals":[{"name":"policy coverage","value":0.91},{"name":"unsafe patterns","value":0},{"name":"review status","value":"clear"}]}

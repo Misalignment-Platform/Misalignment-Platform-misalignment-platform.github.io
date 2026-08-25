@@ -1,0 +1,1 @@
+{"engine":"ATA-CONT","version":"ata-cont-0.1-mock","description":"Evaluates doctrine constraints and governance actions.","signals":[{"name":"doctrine risk","value":0.22},{"name":"rules evaluated","value":12},{"name":"escalation level","value":1}]}

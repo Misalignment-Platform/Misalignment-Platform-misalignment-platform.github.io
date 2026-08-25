@@ -1,0 +1,1 @@
+{"engine":"Omnitrax","version":"omnitrax-0.1-mock","description":"Builds traceable provenance graphs for decisions and evidence.","signals":[{"name":"evidence nodes","value":6},{"name":"linked edges","value":9},{"name":"trace coverage","value":0.94}]}

@@ -1,0 +1,1 @@
+{"engine":"Sentinel","version":"sentinel-0.1-mock","description":"Monitors behavioral drift and anomalies across turns.","signals":[{"name":"behavioral drift","value":0.18},{"name":"anomaly score","value":0.11},{"name":"stability","value":0.82}]}
