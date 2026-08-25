@@ -1,0 +1,16 @@
+{
+  "engine": "Gateway",
+  "version": "gateway-0.1-mock",
+  "description": "Orchestrates full alignment pipeline across all engines.",
+  "pipeline": {
+    "awareness": "conscio-0.1-mock",
+    "misalignment": "misalign-0.1-mock",
+    "v12": "v12-0.1-mock",
+    "doctrine": "doctrine-tenantA-v1"
+  },
+  "final_packet": {
+    "status": "aligned",
+    "summary": "Input is low-risk and structurally coherent.",
+    "packet_id": "pkt_mock_001"
+  }
+}

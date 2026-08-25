@@ -1,0 +1,8 @@
+{
+  "tenant_id": "tenantB",
+  "chain_id": "chain_mock_tenantB_001",
+  "entries": [
+    { "event_id": "evt_B001", "timestamp": "2026-08-25T08:00:00Z", "type": "doctrine.publish", "hash": "hash_evt_B001", "prev_hash": null, "metadata": { "domain": "healthcare" } },
+    { "event_id": "evt_B002", "timestamp": "2026-08-25T08:10:00Z", "type": "evaluation.create", "hash": "hash_evt_B002", "prev_hash": "hash_evt_B001", "metadata": { "input_tokens": 256, "output_tokens": 64 } }
+  ]
+}

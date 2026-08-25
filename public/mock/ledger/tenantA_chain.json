@@ -1,0 +1,11 @@
+{
+  "tenant_id": "tenantA",
+  "chain_id": "chain_mock_tenantA_001",
+  "entries": [
+    { "event_id": "evt_0001", "timestamp": "2026-08-25T09:00:00Z", "type": "doctrine.publish", "hash": "hash_evt_0001", "prev_hash": null, "metadata": { "actor": "system", "notes": "Initial doctrine baseline published." } },
+    { "event_id": "evt_0002", "timestamp": "2026-08-25T09:05:00Z", "type": "evaluation.create", "hash": "hash_evt_0002", "prev_hash": "hash_evt_0001", "metadata": { "input_tokens": 128, "output_tokens": 32 } },
+    { "event_id": "evt_0003", "timestamp": "2026-08-25T09:10:00Z", "type": "misalignment.score", "hash": "hash_evt_0003", "prev_hash": "hash_evt_0002", "metadata": { "score": 0.42, "severity": "low" } },
+    { "event_id": "evt_0004", "timestamp": "2026-08-25T09:15:00Z", "type": "v12.render", "hash": "hash_evt_0004", "prev_hash": "hash_evt_0003", "metadata": { "banks": [1, 2, 3, 9, 12] } },
+    { "event_id": "evt_0005", "timestamp": "2026-08-25T09:20:00Z", "type": "doctrine.resolve", "hash": "hash_evt_0005", "prev_hash": "hash_evt_0004", "metadata": { "verdict": "aligned" } }
+  ]
+}

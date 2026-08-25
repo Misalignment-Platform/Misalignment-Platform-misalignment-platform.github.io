@@ -1,0 +1,14 @@
+{
+  "banks": [
+    { "id": 1, "summary": "Literal interpretation", "score": 0.11 },
+    { "id": 2, "summary": "Contextual reasoning", "score": 0.18 },
+    { "id": 3, "summary": "Relational sensitivity", "score": 0.07 },
+    { "id": 9, "summary": "Narrative coherence", "score": 0.14 },
+    { "id": 12, "summary": "Outcome calibration", "score": 0.09 }
+  ],
+  "conflicts": [
+    "Bank 2 disagrees with Bank 9 on contextual emphasis",
+    "Bank 1 underweights relational cues"
+  ],
+  "version": "v12-0.1-mock"
+}

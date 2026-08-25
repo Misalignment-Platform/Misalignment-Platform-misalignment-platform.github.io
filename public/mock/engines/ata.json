@@ -1,0 +1,14 @@
+{
+  "engine": "ATA",
+  "version": "ata-0.1-mock",
+  "description": "Adaptive training cycles for alignment reinforcement.",
+  "cycles": [
+    { "cycle": 1, "delta": 0.12, "notes": "Improved clarity and coherence." },
+    { "cycle": 2, "delta": 0.09, "notes": "Reduced misalignment variance." }
+  ],
+  "practitioner_levels": [
+    { "level": 1, "label": "Observer" },
+    { "level": 2, "label": "Interpreter" },
+    { "level": 3, "label": "Calibrator" }
+  ]
+}

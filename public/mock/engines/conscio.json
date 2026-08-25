@@ -1,0 +1,12 @@
+{
+  "engine": "Conscio",
+  "version": "conscio-0.1-mock",
+  "description": "Extracts awareness states from model output.",
+  "awareness_states": [
+    { "type": "intent", "value": "informational", "confidence": 0.91 },
+    { "type": "tone", "value": "neutral", "confidence": 0.87 },
+    { "type": "register", "value": "standard", "confidence": 0.83 },
+    { "type": "persona", "value": "analytical", "confidence": 0.78 }
+  ],
+  "metadata": { "latency_ms": 42, "input_tokens": 128, "output_tokens": 32 }
+}

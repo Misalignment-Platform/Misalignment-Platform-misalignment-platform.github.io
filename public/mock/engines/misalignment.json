@@ -1,0 +1,14 @@
+{
+  "engine": "Misalignment",
+  "version": "misalign-0.1-mock",
+  "description": "Scores drift, coherence, clarity, and safety misalignment.",
+  "score": 0.42,
+  "severity": "low",
+  "dimensions": [
+    { "name": "clarity", "value": 0.12 },
+    { "name": "coherence", "value": 0.08 },
+    { "name": "safety", "value": 0.22 },
+    { "name": "alignment", "value": 0.18 }
+  ],
+  "radar": { "clarity": 0.12, "coherence": 0.08, "safety": 0.22, "alignment": 0.18 }
+}

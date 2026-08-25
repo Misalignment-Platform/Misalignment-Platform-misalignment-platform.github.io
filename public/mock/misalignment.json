@@ -1,0 +1,10 @@
+{
+  "score": 0.42,
+  "severity": "low",
+  "classes": [
+    { "class": "clarity", "value": 0.12 },
+    { "class": "coherence", "value": 0.08 },
+    { "class": "safety", "value": 0.22 }
+  ],
+  "version": "misalign-0.1-mock"
+}

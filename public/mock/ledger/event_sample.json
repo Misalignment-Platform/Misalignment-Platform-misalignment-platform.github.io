@@ -1,0 +1,11 @@
+{
+  "event_id": "evt_0003",
+  "tenant_id": "tenantA",
+  "timestamp": "2026-08-25T09:10:00Z",
+  "type": "misalignment.score",
+  "score": 0.42,
+  "severity": "low",
+  "hash": "hash_evt_0003",
+  "prev_hash": "hash_evt_0002",
+  "metadata": { "dimensions": { "clarity": 0.12, "coherence": 0.08, "safety": 0.22 } }
+}

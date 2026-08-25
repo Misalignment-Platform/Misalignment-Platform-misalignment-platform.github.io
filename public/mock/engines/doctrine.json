@@ -1,0 +1,13 @@
+{
+  "engine": "Doctrine",
+  "version": "doctrine-tenantA-v1",
+  "description": "Applies governance rules and alignment doctrine.",
+  "baseline": { "domain": "general", "version": "v1", "hash": "mock_hash_001" },
+  "rules": [
+    { "id": "R-001", "description": "No harmful intent detected.", "severity": "low", "triggered": false },
+    { "id": "R-002", "description": "Output maintains structural coherence.", "severity": "low", "triggered": false },
+    { "id": "R-003", "description": "No ethical violations present.", "severity": "low", "triggered": false }
+  ],
+  "verdict": "aligned",
+  "ledger_chain_id": "chain_mock_001"
+}

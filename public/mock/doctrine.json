@@ -1,0 +1,7 @@
+{
+  "verdict": "aligned",
+  "triggered_rules": [],
+  "retired_rules": [],
+  "baseline_version": "doctrine-tenantA-v1",
+  "ledger_chain_id": "chain_mock_001"
+}

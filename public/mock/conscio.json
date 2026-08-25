@@ -1,0 +1,9 @@
+{
+  "awareness": [
+    { "type": "intent", "value": "informational" },
+    { "type": "tone", "value": "neutral" },
+    { "type": "register", "value": "standard" }
+  ],
+  "confidence": 0.87,
+  "version": "conscio-0.1-mock"
+}
