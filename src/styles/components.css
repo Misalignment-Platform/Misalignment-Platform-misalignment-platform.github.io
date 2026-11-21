@@ -1,1 +1,5 @@
  .accent-blue{border-color:#8ea7ff55}.accent-amber{border-color:#ffca7255}.accent-red{border-color:#ff7f9155}.output-card{min-height:130px}.output-card h3{font-size:1rem}.collapse button:focus-visible,.button:focus-visible,.tabs button:focus-visible,.nav a:focus-visible,.rule-trigger:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+
+.menu-button{min-width:44px;min-height:44px}.menu-button:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+@media(max-width:1040px){.nav nav,.nav>.button{display:none}.menu-button{display:block}.nav{position:relative}.nav nav.open{display:flex;flex-direction:column;gap:0;position:absolute;z-index:20;top:68px;left:1rem;right:1rem;padding:.5rem;border:1px solid var(--line);border-radius:14px;background:var(--panel);box-shadow:0 18px 40px #0008}.nav nav.open a{padding:.8rem;border-radius:8px;color:var(--text)}.nav nav.open a:after{display:none}.nav nav.open a.active{background:#65f6c414;color:var(--mint)}}
+@media(max-width:360px){.nav{padding:0 .75rem}.brand{font-size:1rem;gap:.45rem}.brand-mark{width:38px;height:34px}}

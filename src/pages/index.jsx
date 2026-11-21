@@ -18,7 +18,7 @@ export default function Home({ navigate }) {
         <span className="kicker">Research direction &amp; local prototype</span>
         <h1>Explore the gap<br/>between <em>intent and behavior.</em></h1>
         <p className="lede">Misalignment Platform explores ways to examine divergence between intent, behavior, and context. This site presents concepts and browser-side prototypes; it is not a deployed monitoring or governance service.</p>
-        <div className="hero-actions"><ProcessButton onClick={() => navigate('/demo')}>Explore the local demo</ProcessButton><a className="button-quiet" href="#/doctrine">View proposed principles →</a></div>
+        <div className="hero-actions"><ProcessButton onClick={() => navigate('/explorer')}>Explore a business problem</ProcessButton><a className="button-quiet" href="#/demo">Explore the local demo →</a></div>
       </div>
       <div className="pipeline">
         <div className="pipeline-title"><span>Illustrative concept flow</span><span>Not a runtime</span></div>
@@ -28,6 +28,16 @@ export default function Home({ navigate }) {
         </OutputCard>
         <div className="pipeline-steps">{['Describe an observation', 'Add relevant context', 'Identify open questions', 'Leave decisions to people'].map((text, index) => <div className="pipeline-node" key={text}><i/><span>{text}</span><small>{index + 1}</small></div>)}</div>
         <p style={{color:'var(--muted)',fontSize:'.78rem',margin:'1rem 0 0'}}>This illustration does not process a live trace or produce a validated assessment.</p>
+      </div>
+    </section>
+
+    <section className="section" aria-labelledby="home-explorer">
+      <div className="explorer-cta">
+        <span className="eyebrow">For small-business owners</span>
+        <h2 id="home-explorer" style={{fontSize:'clamp(1.8rem,5vw,3rem)',letterSpacing:'-.04em',margin:'.5rem 0'}}>Where does your business lose alignment?</h2>
+        <p style={{color:'#d6e2ea',maxWidth:'640px'}}>Explore situations where what you intended, what happened, and what people understood stopped matching. No account or AI knowledge needed, and nothing you type is sent to us.</p>
+        <ul className="explorer-cta-paths" aria-label="Starting scenarios"><li>💬 Customers</li><li>🧭 Employees</li><li>⚙️ AI &amp; automation</li><li>🧩 Owner overload</li></ul>
+        <ProcessButton onClick={() => navigate('/explorer')}>Explore a business problem</ProcessButton>
       </div>
     </section>
 

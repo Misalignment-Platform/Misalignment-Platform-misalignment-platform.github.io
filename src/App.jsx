@@ -13,7 +13,8 @@ import { EngineDetail } from './engines/EngineDetail';
 import Ledger from './pages/ledger';
 import Audit from './pages/audit';
 import Console from './portal/Console';
+import Explorer from './pages/explorer';
 
-const routes = { '/': Home, '/engines': Engines, '/demo': Demo, '/developers': Developers, '/console': Console, '/ledger': Ledger, '/audit': Audit, '/academy': Academy, '/doctrine': Doctrine, '/partners': Partners, '/about': About, '/early-access': EarlyAccess };
+const routes = { '/': Home, '/explorer': Explorer, '/engines': Engines, '/demo': Demo, '/developers': Developers, '/console': Console, '/ledger': Ledger, '/audit': Audit, '/academy': Academy, '/doctrine': Doctrine, '/partners': Partners, '/about': About, '/early-access': EarlyAccess };
 function path() { const raw = window.location.hash.replace(/^#/, '') || window.location.pathname; return routes[raw] || /^\/engines\/(conscio|misalignment|v12|doctrine|ata|ata-cont|rephrase|sentinel|omnitrax|codex|gateway)$/.test(raw) ? raw : '/'; }
 export default function App() { const [route, setRoute] = useState(path()); useEffect(() => { const onChange=()=>setRoute(path()); window.addEventListener('hashchange', onChange); return ()=>window.removeEventListener('hashchange', onChange); }, []); const engineMatch = route.match(/^\/engines\/(conscio|misalignment|v12|doctrine|ata|ata-cont|rephrase|sentinel|omnitrax|codex|gateway)$/); const Page=engineMatch ? () => <EngineDetail name={engineMatch[1]} /> : routes[route] || Home; return <SiteLayout route={route}><Page navigate={(to)=>{window.location.hash=to; window.scrollTo(0,0)}} /></SiteLayout>; }
