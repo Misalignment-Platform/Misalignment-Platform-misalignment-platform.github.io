@@ -7,8 +7,6 @@ export function analyzeObservation(input) {
   return {
     score,
     severity,
-    confidence: Math.min(98, 74 + matches * 4),
-    radar: [100 - score, 82, Math.max(20, 100 - score - 8), 76, 100 - Math.round(score / 2), 88],
-    triggeredRules: severity === 'high' ? 2 : severity === 'medium' ? 1 : 0
+    showExamplePrompts: severity !== 'low'
   };
 }

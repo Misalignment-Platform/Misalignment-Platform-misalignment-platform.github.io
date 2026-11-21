@@ -1,1 +1,22 @@
-import React from 'react';import {Card,CardGrid,ProcessButton} from '../components';export default function Partners(){return <><header className="page page-header"><span className="kicker">Partner program</span><h1>Make responsible AI observable together.</h1><p>Work with us on integrations, implementation, research, and the standards that make evidence useful.</p></header><section className="section"><CardGrid><Card title="Technology partners"><p>Connect telemetry, model gateways, and workflow tools to the evidence layer.</p></Card><Card title="Implementation partners"><p>Help teams encode doctrine and operating practices into repeatable systems.</p></Card><Card title="Research partners"><p>Study new misalignment patterns with reproducible, provenance-rich traces.</p></Card></CardGrid></section><section className="section band"><div className="notice"><h2>Start a partner conversation.</h2><p style={{color:'var(--muted)'}}>Tell us what you are building and where evidence is hardest to see.</p><ProcessButton onClick={()=>window.location.href='mailto:partners@misalignmentplatform.com'}>Contact partnerships</ProcessButton></div></section></>}
+import React from 'react';
+import { Card, CardGrid } from '../components';
+
+export default function Partners() {
+  return <>
+    <header className="page page-header">
+      <span className="kicker">Possible research directions</span>
+      <h1>Questions for future collaboration.</h1>
+      <p>These are areas someone might explore with the project. They do not indicate existing partners, integrations, or an active partner program.</p>
+    </header>
+    <section className="section">
+      <CardGrid>
+        <Card title="Technology questions"><p>What evidence and context could be exchanged between model gateways and observability tools?</p></Card>
+        <Card title="Implementation questions"><p>How might teams express operating principles without presenting them as guaranteed enforcement?</p></Card>
+        <Card title="Research questions"><p>Which baselines, experiments, and uncertainty measures would be needed to evaluate a proposed signal?</p></Card>
+      </CardGrid>
+    </section>
+    <section className="section band">
+      <div className="notice"><h2>No partner program is represented.</h2><p style={{color:'var(--muted)'}}>This page describes possible topics only; no application or partnership workflow is connected.</p></div>
+    </section>
+  </>;
+}

@@ -1,1 +1,18 @@
-import React from 'react';import {DoctrineRule,RuleList,SeverityBadge,ProcessButton} from '../components';export default function DemoDoctrine({analysis,onNext}){const review=analysis.triggeredRules>0;return <div className="demo-content"><div className="notice"><span className="eyebrow">Doctrine evaluation</span><h3>{review?'Human review recommended':'Within review threshold'}</h3><p style={{color:'var(--muted)'}}>{review?'The calculated signal triggered governance review based on the entered observation.':'No elevated governance rule was triggered by the entered observation.'}</p><SeverityBadge level={analysis.severity}/></div>{review&&<RuleList><DoctrineRule id="ATA-01" title="Agency remains explicit">Compare delegated authority with the requested scope.</DoctrineRule><DoctrineRule id="ATA-04" title="Stewardship wins">Pause before granting persistent access.</DoctrineRule></RuleList>}<div className="demo-actions"><span style={{color:'var(--muted)',fontSize:'.8rem'}}>{analysis.triggeredRules} rules triggered</span><ProcessButton onClick={onNext}>Generate decision packet</ProcessButton></div></div>}
+import React from 'react';
+import { DoctrineRule, RuleList, ProcessButton } from '../components';
+
+export default function DemoDoctrine({ analysis, onNext }) {
+  const showPrompts = analysis.showExamplePrompts;
+  return <div className="demo-content">
+    <div className="notice">
+      <span className="eyebrow">Illustrative principle prompt</span>
+      <h3>{showPrompts ? 'Example prompts shown' : 'No example prompts shown'}</h3>
+      <p style={{color:'var(--muted)'}}>A toy score threshold toggles these static examples. No doctrine is evaluated, and no review is triggered or routed.</p>
+    </div>
+    {showPrompts && <RuleList>
+      <DoctrineRule id="EXAMPLE-01" title="Keep agency explicit">Consider whether the delegated action matches its requested scope.</DoctrineRule>
+      <DoctrineRule id="EXAMPLE-02" title="Pause before irreversible action">Consider what additional context a person would need.</DoctrineRule>
+    </RuleList>}
+    <div className="demo-actions"><span style={{color:'var(--muted)',fontSize:'.8rem'}}>Example prompts · not executable rules</span><ProcessButton onClick={onNext}>Show local summary</ProcessButton></div>
+  </div>;
+}

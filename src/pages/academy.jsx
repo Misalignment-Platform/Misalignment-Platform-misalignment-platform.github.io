@@ -1,1 +1,18 @@
-import React from 'react';import {Card,CardGrid,Collapse} from '../components';export default function Academy(){return <><header className="page page-header"><span className="kicker">Academy</span><h1>Learn to investigate the signal.</h1><p>Practical foundations for teams building observable, human-directed AI systems.</p></header><section className="section"><CardGrid><Card title="01 · Evidence thinking"><p>Separate what a system did from what you believe it intended.</p></Card><Card title="02 · Drift patterns"><p>Recognize goal drift, context loss, and constraint leakage in traces.</p></Card><Card title="03 · Decision practice"><p>Use scores as calibrated prompts for review, escalation, and learning.</p></Card></CardGrid></section><section className="section band"><h2>Learning paths</h2><div className="rule-list"><Collapse title="For operators"><p>Build an evidence habit around incident review and handoffs.</p></Collapse><Collapse title="For engineers"><p>Instrument traces, map provenance, and design safe delegation boundaries.</p></Collapse><Collapse title="For leaders"><p>Turn governance principles into operating doctrine without promising certainty.</p></Collapse></div></section></>}
+import React from 'react';
+import { Card, CardGrid, Collapse } from '../components';
+
+export default function Academy() {
+  return <>
+    <header className="page page-header"><span className="kicker">Exploration notes</span><h1>Questions for investigating a signal.</h1><p>These static prompts are not a course, training program, or validated operating method.</p></header>
+    <section className="section"><CardGrid>
+      <Card title="01 · Evidence thinking"><p>Separate an observed output from an interpretation of intent.</p></Card>
+      <Card title="02 · Drift patterns"><p>Ask what context and baseline would be needed to examine behavioral change.</p></Card>
+      <Card title="03 · Decision practice"><p>Treat prototype scores as unvalidated examples, not calibrated prompts or decisions.</p></Card>
+    </CardGrid></section>
+    <section className="section band"><h2>Topics to explore</h2><div className="rule-list">
+      <Collapse title="Operations"><p>Questions about evidence, incident review, and handoffs.</p></Collapse>
+      <Collapse title="Engineering"><p>Questions about trace context, provenance, and delegation boundaries.</p></Collapse>
+      <Collapse title="Governance"><p>Questions about expressing principles and stating uncertainty.</p></Collapse>
+    </div></section>
+  </>;
+}

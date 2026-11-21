@@ -3,5 +3,5 @@ import LedgerChainViewer from '../components/LedgerChainViewer';
 
 export default function Ledger() {
   const [tenantId, setTenantId] = useState('tenantA');
-  return <><header className="page page-header"><span className="kicker">Provenance</span><h1>Ledger viewer</h1><p>Follow every decision-support signal through its tenant-scoped hash chain.</p></header><section className="section"><label className="input-panel"><span>Tenant</span><select value={tenantId} onChange={event => setTenantId(event.target.value)}><option value="tenantA">Tenant A</option><option value="tenantB">Tenant B</option></select></label><LedgerChainViewer tenantId={tenantId}/></section></>;
+  return <><header className="page page-header"><span className="kicker">Local JSON fixtures</span><h1>Illustrative chain-shaped data</h1><p>The viewer reads static sample files. It does not verify hashes, provide tenant isolation, or connect to a live or immutable ledger.</p></header><section className="section"><label className="input-panel"><span>Sample fixture label</span><select value={tenantId} onChange={event => setTenantId(event.target.value)}><option value="tenantA">Sample A</option><option value="tenantB">Sample B</option></select></label><LedgerChainViewer tenantId={tenantId}/></section></>;
 }

@@ -1,1 +1,12 @@
-import React from 'react';import {AlignmentRadar,RadarSeverityOverlay,Card,ProcessButton} from '../components';export default function DemoV12({analysis,onNext}){return <div className="demo-content"><div className="split"><Card title="V12 observation profile"><p style={{color:'var(--muted)'}}>Multi-axis analysis combines intent, policy, impact, truth, agency, and context.</p><RadarSeverityOverlay level={analysis.severity==='high'?'critical':'watch'}/></Card><Card><AlignmentRadar data={analysis.radar}/></Card></div><div className="demo-actions"><span className="positive">Profile calculated · provenance attached</span><ProcessButton onClick={onNext}>Open doctrine packet</ProcessButton></div></div>}
+import React from 'react';
+import { AlignmentRadar, Card, ProcessButton } from '../components';
+
+export default function DemoV12({ onNext }) {
+  return <div className="demo-content">
+    <div className="split">
+      <Card title="Placeholder profile"><p style={{color:'var(--muted)'}}>The displayed shape is a fixed illustration, independent of the toy score. It is not a six-dimension analysis or a V12 runtime result.</p></Card>
+      <Card title="Fixed illustrative graphic"><AlignmentRadar/></Card>
+    </div>
+    <div className="demo-actions"><span className="positive">Static illustration · no provenance attached</span><ProcessButton onClick={onNext}>Show principle prompt</ProcessButton></div>
+  </div>;
+}

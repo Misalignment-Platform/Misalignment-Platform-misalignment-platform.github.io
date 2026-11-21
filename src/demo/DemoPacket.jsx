@@ -1,6 +1,18 @@
-import React from 'react';import {Card,CodeBlock,ScoreBadge} from '../components';export default function DemoPacket({input,analysis}){return <div className="demo-content"><div className="split"><Card title="Decision packet"><ScoreBadge score={analysis.score} label="misalignment index"/><p style={{color:'var(--muted)',marginTop:'1rem'}}>{analysis.triggeredRules?'Recommendation: route this observation to a human operator.':'Recommendation: continue with normal monitoring.'}</p><p className="positive">Subject: {input.subject} · Doctrine: {analysis.triggeredRules} triggers · Confidence: {analysis.confidence}%</p></Card><CodeBlock language="json">{`{
-  "trace": "tr_demo_2026",
-  "status": "${analysis.triggeredRules?'review_required':'observed'}",
-  "score": ${analysis.score},
-  "provenance": ["ev_01", "ev_02"]
-}`}</CodeBlock></div><div className="notice"><strong>What this means:</strong> the score organizes evidence for a decision. It does not certify safety, intent, or compliance.</div></div>}
+import React from 'react';
+import { Card, CodeBlock, ScoreBadge } from '../components';
+
+export default function DemoPacket({ input, analysis }) {
+  const sample = {
+    scenario: input.id,
+    toyKeywordScore: analysis.score,
+    demoFlag: analysis.showExamplePrompts ? 'example_prompts_shown' : 'no_example_prompts',
+    source: 'local browser demonstration; no provenance'
+  };
+  return <div className="demo-content">
+    <div className="split">
+      <Card title="Local demonstration summary"><ScoreBadge score={analysis.score} label="toy keyword score"/><p style={{color:'var(--muted)',marginTop:'1rem'}}>This value comes from a small keyword heuristic. It is not evidence, a risk assessment, or a recommendation.</p></Card>
+      <CodeBlock language="illustrative JSON">{JSON.stringify(sample, null, 2)}</CodeBlock>
+    </div>
+    <div className="notice"><strong>Interpretation:</strong> this browser-side sample does not create a trace, attach evidence, evaluate doctrine, or route a decision.</div>
+  </div>;
+}

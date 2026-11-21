@@ -14,5 +14,5 @@ export default function AuditEventViewer({ eventId }) {
   if (state.loading) return <p>Loading audit event...</p>;
   if (state.error) return <p role="alert">{state.error}</p>;
   const data = state.data;
-  return <article className="card audit-event"><span className="eyebrow">{data.event_id}</span><h2>Audit event</h2><p>Tenant: {data.tenant_id} · {data.timestamp}</p><p>{data.type} · score {data.score} · <SeverityBadge level={data.severity}/></p><CodeBlock>{JSON.stringify(data.metadata, null, 2)}</CodeBlock></article>;
+  return <article className="card audit-event"><span className="eyebrow">Fixture · {data.event_id}</span><h2>Sample event</h2><p>Sample label: {data.tenant_id} · {data.timestamp}</p><p>{data.type} · illustrative score {data.score} · <SeverityBadge level={data.severity}/></p><CodeBlock>{JSON.stringify(data.metadata, null, 2)}</CodeBlock></article>;
 }

@@ -13,5 +13,5 @@ export default function LedgerChainViewer({ tenantId }) {
   }, [tenantId]);
   if (state.loading) return <p>Loading ledger chain...</p>;
   if (state.error) return <p role="alert">{state.error}</p>;
-  return <div className="ledger-chain"><div className="section-heading"><div><span className="eyebrow">Append-only provenance</span><h2>{state.data.tenant_id} chain</h2></div><code>{state.data.chain_id}</code></div>{state.data.entries.map(entry => <LedgerEntryCard key={entry.event_id} entry={entry}/>)}</div>;
+  return <div className="ledger-chain"><div className="section-heading"><div><span className="eyebrow">Illustrative JSON fixture</span><h2>{state.data.tenant_id} sample chain</h2></div><code>{state.data.chain_id}</code></div>{state.data.entries.map(entry => <LedgerEntryCard key={entry.event_id} entry={entry}/>)}</div>;
 }
