@@ -3,9 +3,10 @@ import { Card } from '../components';
 
 export default function EarlyAccess() {
   return <section className="page page-header" style={{maxWidth:'760px'}}>
-    <span className="kicker">Project status</span>
-    <h1>No access-request service is connected.</h1>
-    <p>The previous form was a browser-only interaction and did not transmit or store requests. This page makes that limitation explicit; it does not collect an email address.</p>
-    <Card title="Current boundary"><p>The public site is an exploratory presentation with local prototypes. It does not represent an available production service or active early-access program.</p></Card>
+    <span className="kicker">Small-business beta</span>
+    <h1>Coming Soon — Join the Beta</h1>
+    <p>We're preparing a beta for small-business owners to help us understand where alignment breaks in real work. Signup isn't open yet, and this page doesn't collect contact information.</p>
+    <p><a className="text-link" href="#/explorer">Explore a business problem in the meantime →</a></p>
+    <Card title="Current boundary"><p>The public site is an exploratory presentation with local prototypes. It does not represent an available production service. We'll share more about beta participation when signup opens.</p></Card>
   </section>;
 }
