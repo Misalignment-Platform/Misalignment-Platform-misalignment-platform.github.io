@@ -3,7 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 const scenarios = [
   {
     id: 'customers', label: 'Customers', icon: '💬', tone: 'coral',
-    quote: 'We thought we explained it clearly. The customer heard something different.',
+    quote: 'That’s not what I thought I was buying.',
+    description: 'Explore where expectations, communication, and delivery stopped matching.',
     lens: 'what was said and what the customer understood',
     example: {
       goal: 'Explain that our landscaping quote covered spring cleanup only, with weekly mowing priced separately.',
@@ -16,8 +17,9 @@ const scenarios = [
   },
   {
     id: 'employees', label: 'Employees', icon: '🧭', tone: 'amber',
-    quote: 'The process says one thing. Day-to-day work does another.',
-    lens: 'the documented process and the work people actually do',
+    quote: 'That’s not what I asked for.',
+    description: 'Look at the gap between the instruction, what was understood, and what actually happened.',
+    lens: 'the instruction, what was understood, and what happened',
     example: {
       goal: 'Every catering order is double-checked against the order sheet before it leaves the kitchen.',
       happened: 'On busy days, orders go out after a quick glance. Two orders last month were missing items.',
@@ -29,7 +31,8 @@ const scenarios = [
   },
   {
     id: 'ai', label: 'AI & automation', icon: '⚙️', tone: 'blue',
-    quote: 'The AI completed the task, but not quite the task we meant.',
+    quote: 'Technically right. Completely wrong.',
+    description: 'Explore when software or AI completes the request but misses the real objective.',
     lens: 'the instruction given and what the tool produced',
     example: {
       goal: 'Use an AI tool to draft friendly payment reminders for invoices more than 30 days overdue.',
@@ -42,7 +45,8 @@ const scenarios = [
   },
   {
     id: 'owner', label: 'Owner overload', icon: '🧩', tone: 'violet',
-    quote: 'Important decisions are scattered across texts, email, meetings and memory.',
+    quote: 'I know we talked about this somewhere…',
+    description: 'Look at decisions and context scattered across conversations, email, documents, systems, and memory.',
     lens: 'decisions that were made and where they can be found',
     example: {
       goal: 'Agree on a new delivery-fee policy with the team and apply it consistently.',
@@ -60,7 +64,7 @@ const fields = [
   ['happened', 'What actually happened?', 'Describe what occurred, as plainly as you can.'],
   ['context', 'What context might have mattered?', 'Information, assumptions, or communication that shaped it.'],
   ['useful', 'What would a useful result look like?', 'What would be different if this went well?'],
-  ['environment', 'What was going on around it? (optional)', 'Timing, workload, tools, or conditions at the time.']
+  ['environment', 'What was happening around it? (optional)', 'Pressures, systems, timing, incentives, or circumstances that may have mattered.']
 ];
 
 const empty = { goal: '', happened: '', context: '', environment: '', useful: '' };
@@ -86,8 +90,9 @@ function examine(scenario, entry) {
   return { prompts, gaps };
 }
 
-function Pillar({ title, meaning, value, tone }) {
+function Pillar({ title, name, meaning, value, tone }) {
   return <article className={`pillar pillar-${tone}`}>
+    <span className="eyebrow">{name}</span>
     <h3>{title}</h3>
     <p className="pillar-meaning">{meaning}</p>
     {clean(value) ? <blockquote>{clean(value)}</blockquote> : <p className="unknown">Unknown — not provided.</p>}
@@ -98,6 +103,7 @@ export default function Explorer({ navigate }) {
   const [scenarioId, setScenarioId] = useState(null);
   const [entry, setEntry] = useState(empty);
   const [showResults, setShowResults] = useState(false);
+  const [exampleLoaded, setExampleLoaded] = useState(false);
   const scenario = scenarios.find(item => item.id === scenarioId);
   const formHeading = useRef(null);
   const resultsHeading = useRef(null);
@@ -107,11 +113,12 @@ export default function Explorer({ navigate }) {
   useEffect(() => { focusRequest?.target.current?.focus(); }, [focusRequest]);
   const focusOn = target => setFocusRequest({ target });
 
-  const choose = id => { setScenarioId(id); setShowResults(false); focusOn(formHeading); };
+  const choose = id => { setScenarioId(id); setShowResults(false); setExampleLoaded(false); focusOn(formHeading); };
+  const showExample = () => { setScenarioId('customers'); setEntry(scenarios[0].example); setExampleLoaded(true); setShowResults(false); focusOn(formHeading); };
   const update = (key, value) => setEntry(current => ({ ...current, [key]: value }));
   const hasEnough = clean(entry.goal) || clean(entry.happened);
   const submit = event => { event.preventDefault(); if (!hasEnough) return; setShowResults(true); focusOn(resultsHeading); };
-  const reset = () => { setScenarioId(null); setEntry(empty); setShowResults(false); focusOn(startHeading); };
+  const reset = () => { setScenarioId(null); setEntry(empty); setExampleLoaded(false); setShowResults(false); focusOn(startHeading); };
   const editAgain = () => { setShowResults(false); focusOn(formHeading); };
   const result = scenario && showResults ? examine(scenario, entry) : null;
 
@@ -119,7 +126,13 @@ export default function Explorer({ navigate }) {
     <header className="explorer-hero">
       <span className="kicker">SMB Owner Explorer</span>
       <h1>Where does your business lose alignment?</h1>
-      <p>Explore situations where what you intended, what happened, and what people understood stopped matching.</p>
+      <p>The problem isn’t always that something went wrong. Sometimes everything worked, just toward the wrong outcome.</p>
+      <p>Misalignment can show up between owners and employees, businesses and customers, people and processes, or people and AI.</p>
+      <p>The Misalignment Explorer gives you a structured way to examine the gap without pretending to know things the evidence can’t tell us.</p>
+      {!scenario && <div className="explorer-actions">
+        <button type="button" className="button" onClick={showExample}>Show me how<span aria-hidden="true">→</span></button>
+        <button type="button" className="button-outline" onClick={() => focusOn(startHeading)}>Explore my own situation</button>
+      </div>}
       <ul className="explorer-promises" aria-label="How this explorer works">
         <li>No account needed</li>
         <li>Stays in this browser tab</li>
@@ -134,6 +147,7 @@ export default function Explorer({ navigate }) {
           <span className="scenario-icon" aria-hidden="true">{item.icon}</span>
           <strong>{item.label}</strong>
           <span>“{item.quote}”</span>
+          <span>{item.description}</span>
         </button>)}
       </div>
     </section>
@@ -141,9 +155,10 @@ export default function Explorer({ navigate }) {
     {scenario && !showResults && <section className={`explorer-step tone-${scenario.tone}`} aria-labelledby="explorer-describe">
       <h2 id="explorer-describe" ref={formHeading} tabIndex={-1}><span className="step-number">2</span>Describe what happened</h2>
       <p className="step-help">Looking at {scenario.lens}. Write in your own words, or start from an example and edit it.</p>
+      {exampleLoaded && <p className="step-help" role="status">Example answers loaded. Edit them or organize them to see how the walkthrough works.</p>}
       <div className="explorer-actions">
-        <button type="button" className="button-outline" onClick={() => setEntry(scenario.example)}>Fill in an example</button>
-        <button type="button" className="button-outline" onClick={() => setEntry(empty)}>Clear answers</button>
+        <button type="button" className="button-outline" onClick={() => { setEntry(scenario.example); setExampleLoaded(true); }}>Fill in an example</button>
+        <button type="button" className="button-outline" onClick={() => { setEntry(empty); setExampleLoaded(false); }}>Clear answers</button>
       </div>
       <form className="explorer-form" onSubmit={submit}>
         {fields.map(([key, label, hint]) => <label key={key} className="explorer-field">
@@ -160,22 +175,23 @@ export default function Explorer({ navigate }) {
     </section>}
 
     {result && <section className="explorer-step explorer-results" aria-labelledby="explorer-results">
-      <h2 id="explorer-results" ref={resultsHeading} tabIndex={-1}><span className="step-number">3</span>Your situation, organized</h2>
+      <h2 id="explorer-results" ref={resultsHeading} tabIndex={-1}><span className="step-number">3</span>Let’s look at where the gap might be.</h2>
       <p className="boundary" role="note"><strong>This is an exploratory walkthrough, not an automated diagnosis.</strong> Your words are sorted into four pillars and paired with questions. Nothing was scored or analyzed by Conscio or any other engine, and nothing was sent anywhere.</p>
       <div className="pillar-grid">
-        <Pillar title="Intent" meaning="What success was supposed to mean." value={entry.goal} tone="coral"/>
-        <Pillar title="Behavior" meaning="What actually occurred." value={entry.happened} tone="amber"/>
-        <Pillar title="Context" meaning="Information or assumptions influencing what happened." value={entry.context} tone="blue"/>
-        <Pillar title="Environment" meaning="Conditions surrounding the event that may have affected the outcome." value={entry.environment} tone="violet"/>
+        <Pillar name="Intent" title="What you intended" meaning="What were you actually trying to make happen?" value={entry.goal} tone="coral"/>
+        <Pillar name="Behavior" title="What happened" meaning="What can we establish about the result?" value={entry.happened} tone="amber"/>
+        <Pillar name="Context" title="What people knew" meaning="What information, assumptions, or expectations were different?" value={entry.context} tone="blue"/>
+        <Pillar name="Environment" title="What was happening around it" meaning="What pressures, systems, timing, incentives, or circumstances may have mattered?" value={entry.environment} tone="violet"/>
       </div>
       {clean(entry.useful) && <div className="useful-result"><span className="eyebrow">What a useful result looks like</span><p>{clean(entry.useful)}</p></div>}
       <div className="examine">
-        <h3>Things worth examining</h3>
+        <h3>Questions to explore</h3>
         <ol>{result.prompts.map(prompt => <li key={prompt}>{prompt}</li>)}</ol>
-        {result.gaps.length > 0 && <>
-          <h4>Possible gaps in what we know</h4>
-          <ul>{result.gaps.map(gap => <li key={gap}>{gap}</li>)}</ul>
-        </>}
+        <h4>What we still don’t know</h4>
+        <p>Instead of filling in the blanks, we’ll keep important unknowns visible.</p>
+        {result.gaps.length > 0
+          ? <ul>{result.gaps.map(gap => <li key={gap}>{gap}</li>)}</ul>
+          : <p>You provided an answer for each area. Other details may still be unknown.</p>}
       </div>
       <div className="explorer-actions">
         <button type="button" className="button-outline" onClick={editAgain}>Edit my answers</button>
@@ -184,9 +200,12 @@ export default function Explorer({ navigate }) {
     </section>}
 
     <section className="beta-bridge" aria-labelledby="beta-heading">
-      <h2 id="beta-heading">Does this happen in your business?</h2>
-      <p>We're looking for small-business owners willing to help us understand where alignment breaks in real work.</p>
-      <a className="button" href="#/early-access" onClick={event => { if (navigate) { event.preventDefault(); navigate('/early-access'); } }}>Join the beta<span aria-hidden="true">→</span></a>
+      <h2 id="beta-heading">Does your business have problems like this?</h2>
+      <p>We’re building Misalignment Platform around real situations, not imaginary use cases.</p>
+      <p>If communication gaps, process drift, lost context, AI mistakes, or “how the hell did we end up here?” moments are familiar, we’d like your input.</p>
+      <a className="button" href="#/early-access" onClick={event => { if (navigate) { event.preventDefault(); navigate('/early-access'); } }}>Help shape the beta<span aria-hidden="true">→</span></a>
+      <p>No sales pitch required. When signup opens, tell us what actually goes wrong, what you’ve already tried, and what a useful solution would need to do.</p>
+      <p>Beta signup is coming soon; this page does not collect or submit your answers.</p>
     </section>
   </div>;
 }
