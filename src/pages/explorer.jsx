@@ -101,9 +101,11 @@ function Pillar({ title, name, meaning, value, tone }) {
 
 export default function Explorer({ navigate }) {
   const [scenarioId, setScenarioId] = useState(null);
-  const [entry, setEntry] = useState(empty);
+  const [entries, setEntries] = useState({});
+  const [exampleLoadedFor, setExampleLoadedFor] = useState({});
   const [showResults, setShowResults] = useState(false);
-  const [exampleLoaded, setExampleLoaded] = useState(false);
+  const entry = entries[scenarioId] || empty;
+  const exampleLoaded = !!exampleLoadedFor[scenarioId];
   const scenario = scenarios.find(item => item.id === scenarioId);
   const formHeading = useRef(null);
   const resultsHeading = useRef(null);
@@ -113,12 +115,14 @@ export default function Explorer({ navigate }) {
   useEffect(() => { focusRequest?.target.current?.focus(); }, [focusRequest]);
   const focusOn = target => setFocusRequest({ target });
 
-  const choose = id => { setScenarioId(id); setShowResults(false); setExampleLoaded(false); focusOn(formHeading); };
-  const showExample = () => { setScenarioId('customers'); setEntry(scenarios[0].example); setExampleLoaded(true); setShowResults(false); focusOn(formHeading); };
-  const update = (key, value) => setEntry(current => ({ ...current, [key]: value }));
+  const choose = id => { setScenarioId(id); setShowResults(false); focusOn(formHeading); };
+  const showExample = () => { setScenarioId('customers'); setEntries(current => ({ ...current, customers: scenarios[0].example })); setExampleLoadedFor(current => ({ ...current, customers: true })); setShowResults(false); focusOn(formHeading); };
+  const fillExample = () => { setEntries(current => ({ ...current, [scenarioId]: scenario.example })); setExampleLoadedFor(current => ({ ...current, [scenarioId]: true })); };
+  const clearAnswers = () => { setEntries(current => ({ ...current, [scenarioId]: empty })); setExampleLoadedFor(current => ({ ...current, [scenarioId]: false })); };
+  const update = (key, value) => setEntries(current => ({ ...current, [scenarioId]: { ...(current[scenarioId] || empty), [key]: value } }));
   const hasEnough = clean(entry.goal) || clean(entry.happened);
   const submit = event => { event.preventDefault(); if (!hasEnough) return; setShowResults(true); focusOn(resultsHeading); };
-  const reset = () => { setScenarioId(null); setEntry(empty); setExampleLoaded(false); setShowResults(false); focusOn(startHeading); };
+  const reset = () => { setScenarioId(null); setEntries({}); setExampleLoadedFor({}); setShowResults(false); focusOn(startHeading); };
   const editAgain = () => { setShowResults(false); focusOn(formHeading); };
   const result = scenario && showResults ? examine(scenario, entry) : null;
 
@@ -157,8 +161,8 @@ export default function Explorer({ navigate }) {
       <p className="step-help">Looking at {scenario.lens}. Write in your own words, or start from an example and edit it.</p>
       {exampleLoaded && <p className="step-help" role="status">Example answers loaded. Edit them or organize them to see how the walkthrough works.</p>}
       <div className="explorer-actions">
-        <button type="button" className="button-outline" onClick={() => { setEntry(scenario.example); setExampleLoaded(true); }}>Fill in an example</button>
-        <button type="button" className="button-outline" onClick={() => { setEntry(empty); setExampleLoaded(false); }}>Clear answers</button>
+        <button type="button" className="button-outline" onClick={fillExample}>Fill in an example</button>
+        <button type="button" className="button-outline" onClick={clearAnswers}>Clear answers</button>
       </div>
       <form className="explorer-form" onSubmit={submit}>
         {fields.map(([key, label, hint]) => <label key={key} className="explorer-field">
