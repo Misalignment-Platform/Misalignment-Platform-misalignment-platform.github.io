@@ -7,7 +7,6 @@ export function analyzeObservation(input) {
   return {
     score,
     severity,
-    radar: [100 - score, 82, Math.max(20, 100 - score - 8), 76, 100 - Math.round(score / 2), 88],
     showExamplePrompts: severity !== 'low'
   };
 }

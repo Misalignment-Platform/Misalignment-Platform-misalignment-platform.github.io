@@ -32,7 +32,7 @@ export default function DemoPipeline() {
     <DemoInput scenario={input} scenarios={scenarios} selectedIndex={scenarioIndex} onScenarioChange={chooseScenario} onNext={next}/>,
     <DemoAwareness input={input} onNext={next}/>,
     <DemoMisalignment analysis={analysis} onNext={next}/>,
-    <DemoV12 analysis={analysis} onNext={next}/>,
+    <DemoV12 onNext={next}/>,
     <DemoDoctrine analysis={analysis} onNext={next}/>,
     <DemoPacket input={input} analysis={analysis}/>
   ];
