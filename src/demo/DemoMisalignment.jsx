@@ -1,1 +1,14 @@
-import React from 'react';import {ConflictMap,MisalignmentScore,MascotReaction,ProcessButton,SeverityBadge} from '../components';export default function DemoMisalignment({input,analysis,onNext}){return <div className="demo-content"><MascotReaction mood={analysis.severity==='high'?'alert':'worried'}>The entered observation produced a {analysis.severity}-severity signal from its action and context.</MascotReaction><div className="split"><MisalignmentScore score={analysis.score} delta="calculated"/><div><span className="eyebrow">Primary signal</span><p><SeverityBadge level={analysis.severity}/> Constraint analysis</p><p style={{color:'var(--muted)',fontSize:'.8rem'}}>The action “{input.action}” is compared with “{input.context}”.</p></div></div><ConflictMap items={[{left:input.context,right:input.action,level:analysis.severity},{left:input.subject,right:'Observed scope',level:'medium'},{left:'User request',right:'Agent initiative',level:analysis.severity}]}/><div className="demo-actions"><span style={{color:'var(--muted)',fontSize:'.8rem'}}>Decision support only</span><ProcessButton onClick={onNext}>Evaluate doctrine</ProcessButton></div></div>}
+import React from 'react';
+import { MisalignmentScore, ProcessButton, SeverityBadge } from '../components';
+
+export default function DemoMisalignment({ analysis, onNext }) {
+  return <div className="demo-content">
+    <div className="notice">
+      <span className="eyebrow">Toy keyword heuristic</span>
+      <p>The local script counts a small list of words in the sample text. It does not interpret intent, compare action with context, or assess actual risk.</p>
+      <p><SeverityBadge level={analysis.severity}/> Demo-only flag from a non-validated formula.</p>
+    </div>
+    <MisalignmentScore score={analysis.score} label="Toy keyword score"/>
+    <div className="demo-actions"><span style={{color:'var(--muted)',fontSize:'.8rem'}}>No model, evidence graph, or operational decision</span><ProcessButton onClick={onNext}>Show placeholder profile</ProcessButton></div>
+  </div>;
+}

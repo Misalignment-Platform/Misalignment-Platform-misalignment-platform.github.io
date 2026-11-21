@@ -1,11 +1,11 @@
-# Misalignment Platform site
+# Misalignment Platform website
 
-React + Vite frontend for the Misalignment Platform. The site presents AI governance evidence, continuous monitoring, decision-support scoring, provenance, the Ata-Cont doctrine, Conscio, and V12.
+This React + Vite repository builds an exploratory public presentation and browser-side prototypes. The demos use local logic and bundled mock JSON. They do not establish a deployed platform API, operational monitoring, validated scoring, or production governance.
 
 ## Local development
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -16,4 +16,6 @@ npm run build
 npm run preview
 ```
 
-The production bundle is emitted to `dist/` and is compatible with Cloudflare Pages and GitHub Pages. Set the build command to `npm run build` and the output directory to `dist`. Client-side navigation uses hash routes, so no server rewrite configuration is required.
+The GitHub Pages workflow builds the repository root and publishes `dist/`. Deployment configuration and a successful build do not establish that the custom domain is reachable or that a platform service is deployed.
+
+See [WEBSITE-REPAIR-REPORT.md](WEBSITE-REPAIR-REPORT.md) for the claim review, evidence boundaries, verification results, and remaining unknowns.

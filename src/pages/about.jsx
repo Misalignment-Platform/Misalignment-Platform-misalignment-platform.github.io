@@ -2,52 +2,49 @@ import React from 'react';
 import { Card, CardGrid } from '../components';
 
 const capabilities = [
-  ['Awareness', 'Extract awareness states from model output and surrounding context.'],
-  ['Misalignment', 'Score clarity, coherence, safety, and behavioral drift.'],
-  ['V12 reasoning', 'Render multiple perspectives and surface conflicts for review.'],
-  ['Doctrine', 'Apply versioned governance rules to operational decisions.'],
-  ['Alignment packets', 'Deliver explainable decision-support signals downstream.'],
-  ['Provenance', 'Maintain tenant-scoped evidence for audit and replay.']
+  ['Awareness', 'A proposed way to describe states inferred from model output and surrounding context.'],
+  ['Misalignment', 'An experimental topic: how clarity, coherence, safety, and behavioral change might be examined.'],
+  ['V12 reasoning', 'A conceptual approach to representing multiple perspectives and questions for review.'],
+  ['Doctrine', 'A design goal of expressing governance principles as reviewable rules.'],
+  ['Decision support', 'A proposed presentation of evidence for human consideration, not an automated decision.'],
+  ['Provenance', 'A design question about retaining the sources and context behind a finding.']
 ];
 
 const audiences = [
-  ['Governance & Compliance', 'Continuous oversight and audit-ready provenance.'],
-  ['Engineering & Architecture', 'A runtime alignment layer for any model.'],
-  ['Product & Operations', 'Visibility into behavioral drift over time.'],
-  ['Executive Leadership', 'Strategic guardrails for dependable AI.']
+  ['Governance & compliance', 'Potential readers interested in oversight and evidence practices.'],
+  ['Engineering & architecture', 'Potential readers exploring observability and system boundaries.'],
+  ['Product & operations', 'Potential readers considering how to interpret behavior over time.'],
+  ['Research', 'Potential readers studying evidence, evaluation, and uncertainty.']
 ];
 
 export default function About() {
   return <>
     <header className="page page-header">
-      <span className="kicker">About</span>
-      <h1>Governance for the moments between intent and impact.</h1>
-      <p>AI systems do not always fail loudly. They drift, misinterpret context, over-generalize patterns, or respond in ways that do not match the intent behind a request.</p>
-      <p>Misalignment Platform helps organizations understand and govern those moments with continuous evidence about AI behavior, reasoning shifts, and operational risk.</p>
+      <span className="kicker">About this project</span>
+      <h1>Exploring the gap between intent and impact.</h1>
+      <p>AI systems can produce outputs that differ from what people expected. The project explores how to describe those differences and what evidence may help people assess them.</p>
+      <p>The website is a presentation and local prototype. It does not provide continuous monitoring, validated risk measurement, or an operational governance service.</p>
     </header>
     <section className="section band">
-      <div className="section-heading"><div><span className="eyebrow">What the platform does</span><h2>Make behavior visible.</h2></div><p>AI safety becomes an operating practice when teams can observe, measure, govern, and improve it continuously.</p></div>
+      <div className="section-heading"><div><span className="eyebrow">Concepts under exploration</span><h2>Questions, not available capabilities.</h2></div><p>The descriptions below summarize intended directions; repository examples do not establish end-to-end implementation.</p></div>
       <CardGrid>{capabilities.map(([title, description]) => <Card key={title} title={title}><p>{description}</p></Card>)}</CardGrid>
     </section>
     <section className="section">
-      <div className="section-heading"><div><span className="eyebrow">Who it is for</span><h2>One evidence layer, many decisions.</h2></div></div>
+      <div className="section-heading"><div><span className="eyebrow">Potential readers</span><h2>One topic, many perspectives.</h2></div></div>
       <CardGrid>{audiences.map(([title, description]) => <Card key={title} title={title}><p>{description}</p></Card>)}</CardGrid>
     </section>
     <section className="section band">
       <div className="split">
-        <Card title="Mission"><p>To make AI behavior understandable, measurable, and governable—so organizations can deploy powerful systems without sacrificing safety, trust, or operational integrity.</p></Card>
-        <Card title="Vision"><p>A world where every AI system operates with transparent evidence, stable alignment, and continuous governance—where drift is detectable, misalignment is correctable, and intent reliably becomes impact.</p></Card>
+        <Card title="Aim"><p>Explore ways to make AI behavior, evidence, and uncertainty easier to discuss without presenting prototypes as guarantees.</p></Card>
+        <Card title="Long-term aspiration"><p>Develop and validate methods that help people examine behavior and make accountable decisions. This is an aspiration, not a current platform outcome.</p></Card>
       </div>
     </section>
     <section className="section">
       <div className="split">
-        <div><span className="eyebrow">Why alignment matters</span><h2>AI does not break like traditional software. It drifts.</h2></div>
-        <div><p>Models can respond differently over time even when application code has not changed. Those shifts are subtle, often invisible, and capable of creating real-world consequences before anyone notices.</p><p>Alignment is the discipline of understanding how a system interprets input, makes decisions, and matches policy, ethics, and user expectations. It is not about restricting capability; it is about ensuring capability behaves as intended.</p></div>
+        <div><span className="eyebrow">Why examine alignment?</span><h2>Differences need context.</h2></div>
+        <div><p>A difference between an expected and observed behavior is a prompt for investigation, not by itself proof of failure or intent.</p><p>Any measurement would require clear definitions, suitable baselines, representative evaluation, and published limitations. The repository evidence reviewed does not establish a canonical scoring method.</p></div>
       </div>
-      <div className="notice" style={{marginTop:'2rem'}}><strong>Alignment is infrastructure.</strong><p style={{color:'var(--muted)',margin:'.5rem 0 0'}}>It turns drift into a measurable signal, doctrine into an enforceable practice, and governance from a reactive process into a continuous capability.</p></div>
-    </section>
-    <section className="section band">
-      <div className="split"><div><span className="eyebrow">Our beginning</span><h2>From utility operations to AI observability.</h2></div><p style={{color:'var(--muted)'}}>Founder Brianel Hunter brings a utility operator's respect for weak signals, clear handoffs, and accountable decisions to the design of Conscio, V12, and the Ata-Cont doctrine.</p></div>
+      <div className="notice" style={{marginTop:'2rem'}}><strong>Evidence boundary</strong><p style={{color:'var(--muted)',margin:'.5rem 0 0'}}>Repository code and tests support bounded prototype claims only. They do not establish reliable general measurement, production readiness, or deployment.</p></div>
     </section>
   </>;
 }

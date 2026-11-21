@@ -1,4 +1,20 @@
-import React,{useState} from 'react';import {ApiRequestPanel,ApiResponsePanel,Card,CardGrid,CodeBlock,Collapsible,ErrorBadge,ProcessButton} from '../components';
-export default function Developers({navigate}){const [ran,setRan]=useState(false);return <><header className="page page-header"><span className="kicker">Developer portal</span><h1>Build evidence into the loop.</h1><p>Drop observations into a stable API, inspect provenance, and keep humans in control of the decision surface.</p><a className="text-link" href="#/console">Open the mock API console →</a></header><section className="section"><div className="split"><div><h2>API overview</h2><p style={{color:'var(--muted)'}}>The V12 API accepts trace observations and returns decision-support signals. SDKs are intentionally thin so your telemetry remains yours.</p><CardGrid><Card title="JavaScript SDK"><code>npm i @misalignment/sdk</code></Card><Card title="Python SDK"><code>pip install misalignment</code></Card></CardGrid></div><div><ApiRequestPanel/><ApiResponsePanel/></div></div></section><section className="section band"><div className="section-heading"><div><span className="eyebrow">Live console</span><h2>Send a sample observation.</h2></div><ErrorBadge>{ran?'200 · observation accepted':'Ready'}</ErrorBadge></div><div className="api-panel"><CodeBlock language="curl">{'curl -X POST https://api.misalignmentplatform.com/v1/observations \
-  -H "Authorization: Bearer mp_demo" \
-  -d @observation.json'}</CodeBlock><ProcessButton onClick={()=>setRan(true)} disabled={ran}>{ran?'Observation received':'Run in console'}</ProcessButton>{ran&&<p className="positive" style={{marginTop:'1rem'}}>Trace tr_demo_2026 linked to 6 evidence nodes. No production system was contacted.</p>}</div></section><section className="section"><h2>Endpoint reference</h2><div className="rule-list"><Collapsible title="POST /v1/observations"><p>Submit a trace, context envelope, and optional doctrine profile. Returns an observation id and initial status.</p></Collapsible><Collapsible title="GET /v1/observations/:id"><p>Retrieve scores, confidence, conflict map, and source-linked evidence.</p></Collapsible><Collapsible title="POST /v1/exports"><p>Export a signed decision packet for review systems and audit trails.</p></Collapsible></div><h2 style={{marginTop:'3rem'}}>Changelog</h2><p style={{color:'var(--muted)'}}>V12.4 · Added doctrine rule provenance and radar severity overlays.</p></section></>}
+import React from 'react';
+import { Card, CardGrid } from '../components';
+
+export default function Developers() {
+  return <>
+    <header className="page page-header">
+      <span className="kicker">Developer samples</span>
+      <h1>Inspect the local prototype data.</h1>
+      <p>This repository does not establish a deployed public API or SDK. The console reads static JSON files bundled with this website; it does not submit observations or contact a platform backend.</p>
+      <a className="text-link" href="#/console">Open the local sample-data viewer →</a>
+    </header>
+    <section className="section">
+      <CardGrid>
+        <Card title="Sample engine data"><p>Static mock files show possible response shapes. They are not engine results or service responses.</p></Card>
+        <Card title="Sample audit event"><p>A fixture demonstrates how event metadata could be displayed. It is not a real customer event or audit record.</p><a className="text-link" href="#/audit">View the fixture →</a></Card>
+        <Card title="Sample ledger"><p>Local JSON illustrates a chain-shaped display. It does not verify a live or immutable ledger.</p><a className="text-link" href="#/ledger">View the fixture →</a></Card>
+      </CardGrid>
+    </section>
+  </>;
+}

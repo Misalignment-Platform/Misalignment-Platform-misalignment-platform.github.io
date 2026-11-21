@@ -1,1 +1,11 @@
-import React,{useState} from 'react';import {InputPanel,ProcessButton,Card} from '../components';export default function EarlyAccess(){const [sent,setSent]=useState(false);const [email,setEmail]=useState('');return <section className="page page-header" style={{maxWidth:'760px'}}><span className="kicker">Early access</span><h1>Bring the workflow where drift matters.</h1><p>Share a little context. We will follow up with a focused evidence-mapping conversation—no automated promises, no compliance guarantees.</p>{sent?<Card title="Request received"><p>Thanks. We will reach out at <strong style={{color:'var(--mint)'}}>{email}</strong>.</p></Card>:<div className="api-panel"><InputPanel label="Work email" value={email} onChange={setEmail} placeholder="you@company.com"><input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@company.com"/></InputPanel><div style={{marginTop:'1rem'}}><ProcessButton onClick={()=>email&&setSent(true)} disabled={!email}>Request access</ProcessButton></div></div>}</section>}
+import React from 'react';
+import { Card } from '../components';
+
+export default function EarlyAccess() {
+  return <section className="page page-header" style={{maxWidth:'760px'}}>
+    <span className="kicker">Project status</span>
+    <h1>No access-request service is connected.</h1>
+    <p>The previous form was a browser-only interaction and did not transmit or store requests. This page makes that limitation explicit; it does not collect an email address.</p>
+    <Card title="Current boundary"><p>The public site is an exploratory presentation with local prototypes. It does not represent an available production service or active early-access program.</p></Card>
+  </section>;
+}

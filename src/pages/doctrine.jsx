@@ -1,1 +1,27 @@
-import React from 'react';import {DoctrineRule,RuleList,RuleTrigger,Card} from '../components';const rules=[['ATA-01','Agency remains explicit','A system may recommend, but delegated authority must be bounded and visible.'],['ATA-02','Truth is traceable','Claims should link to an observation, source, or stated uncertainty.'],['ATA-03','Impact is contextual','Severity reflects who and what can be affected—not only model confidence.'],['ATA-04','Stewardship wins','When signals conflict, preserve human choice and reduce irreversible action.']];export default function Doctrine(){return <><header className="page page-header"><span className="kicker">Ata-Cont doctrine</span><h1>Boundaries you can execute.</h1><p>A living operating frame for Conscio and the teams responsible for AI that touches real people and systems.</p></header><section className="section"><Card title="Doctrine status"><p style={{color:'var(--muted)'}}>Current profile: <strong style={{color:'var(--mint)'}}>default-human-directed</strong>. Rules are versioned, reviewable, and linked to evidence.</p></Card><RuleList>{rules.map(([id,title,text])=><DoctrineRule key={id} id={id} title={title}>{text}</DoctrineRule>)}</RuleList></section><section className="section band"><h2>Trigger a review</h2><p style={{color:'var(--muted)'}}>Rules are not guarantees. They are explicit prompts to pause, inspect provenance, and decide.</p><RuleTrigger>Open doctrine review packet</RuleTrigger></section></>}
+import React from 'react';
+import { DoctrineRule, RuleList, Card } from '../components';
+
+const principles = [
+  ['ATA-01', 'Keep agency explicit', 'A design principle: any delegated authority should be bounded and visible.'],
+  ['ATA-02', 'Make claims traceable', 'A design principle: connect claims to observations, sources, or stated uncertainty.'],
+  ['ATA-03', 'Describe impact in context', 'A design principle: consider who and what may be affected, not only a model score.'],
+  ['ATA-04', 'Preserve human choice', 'A design principle: when signals conflict, avoid implying that a score settles the decision.']
+];
+
+export default function Doctrine() {
+  return <>
+    <header className="page page-header">
+      <span className="kicker">Ata-Cont · proposed design principles</span>
+      <h1>Boundaries to discuss, not controls in force.</h1>
+      <p>This page presents an illustrative summary of doctrine themes. The website does not load, version, or enforce these rules in a platform runtime.</p>
+    </header>
+    <section className="section">
+      <Card title="Status"><p style={{color:'var(--muted)'}}>Conceptual material. No active profile, integrated enforcement guarantee, or production control is represented here.</p></Card>
+      <RuleList>{principles.map(([id, title, text]) => <DoctrineRule key={id} id={id} title={title}>{text}</DoctrineRule>)}</RuleList>
+    </section>
+    <section className="section band">
+      <h2>Human review remains a design question</h2>
+      <p style={{color:'var(--muted)'}}>The prototype does not trigger a review packet or route an operational decision. Its controls are illustrative UI only.</p>
+    </section>
+  </>;
+}
