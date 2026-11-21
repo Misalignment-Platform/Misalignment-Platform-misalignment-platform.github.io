@@ -11,7 +11,7 @@ export function SiteLayout({ children, route }) {
       <button className="menu-button" aria-label="Open navigation">☰</button>
     </header>
     <aside className="notice" role="note">
-      Exploratory presentation and local prototypes only. Demos, scores, audit events, and ledger views use illustrative sample data; they are not a live service, validated scoring system, or production control.
+      This website's demos and data are local samples, not a connected platform service. The separate Platform repository contains historical implementations and current prototypes with varying evidence; none of that alone establishes production readiness.
     </aside>
     <main>{children}</main>
     <footer className="footer">

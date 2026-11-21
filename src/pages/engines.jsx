@@ -19,7 +19,7 @@ export default function Engines({ navigate }) {
     <header className="page page-header">
       <span className="kicker">Conceptual roles &amp; local mock data</span>
       <h1>Ideas for examining AI behavior.</h1>
-      <p>These names describe proposed roles, not a verified integrated engine suite. Detail pages render static sample data stored with this website.</p>
+      <p>Some related components have service prototypes and tests in the Platform repository; others remain design roles. These cards present the role map, while detail pages render static sample data stored with this website—not connected engine output.</p>
     </header>
     <AnimatedSection className="section"><CardGrid>{roles.map(([name, code, description]) => <EngineCard key={name} name={name} code={code} description={description} onClick={() => navigate?.(`/engines/${name.toLowerCase()}`)}/>)}</CardGrid></AnimatedSection>
     <section className="section band">

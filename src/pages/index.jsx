@@ -44,7 +44,30 @@ export default function Home({ navigate }) {
     </AnimatedSection>
 
     <section className="section band">
-      <div className="section-heading"><div><span className="eyebrow">Conceptual engine roles</span><h2>Ideas, not a deployed suite.</h2></div><a className="text-link" href="#/engines">Review role descriptions →</a></div>
+      <div className="section-heading"><div><span className="eyebrow">Repository evidence</span><h2>Implemented work, with status attached.</h2></div><p>The Platform repository contains real service and runtime artifacts. Their maturity varies; this website does not connect to them.</p></div>
+      <CardGrid>
+        <Card title="VERIFIED · historical implementation">
+          <p>An earlier local Conscio runtime and drift-verification harness remain in <code>runtime-v010</code>. This establishes versioned implementation code and test scenarios, not a currently operated service or deployment.</p>
+          <a className="text-link" href="https://github.com/Misalignment-Platform/misalignment-platform/tree/main/runtime-v010">Inspect runtime-v010 →</a>
+        </Card>
+        <Card title="VERIFIED · current prototype">
+          <p>The standalone Triad runtime has bounded <code>prototype-rules-v1</code> rules, a local hash-chained ledger, authenticated routes, and fail-closed persistence. Its report records 46 passing tests; when no rule matches, its score uses caller-supplied confidence—not measured alignment. It is experimental and has no downstream delivery.</p>
+          <a className="text-link" href="https://github.com/Misalignment-Platform/misalignment-platform/blob/main/reports/triad_runtime_validation_report.md">Read the validation report →</a>
+        </Card>
+        <Card title="CONCEPTUAL · design role">
+          <p>Conscio interpretation and Smith enforcement are named design roles. Existing prototypes do not establish that separation as an integrated platform-wide guarantee.</p>
+          <a className="text-link" href="https://github.com/Misalignment-Platform/misalignment-platform/blob/main/CURRENT_STATE.md">Review current status →</a>
+        </Card>
+        <Card title="UNPROVEN · production capability">
+          <p>Canonical scoring, production-grade identity and tenant isolation, externally anchored immutable audit, production deployment, and governed autonomy are not established.</p>
+          <a className="text-link" href="https://github.com/Misalignment-Platform/misalignment-platform/blob/main/CURRENT_STATE.md">See what is not implemented →</a>
+        </Card>
+      </CardGrid>
+    </section>
+
+    <section className="section band">
+      <div className="section-heading"><div><span className="eyebrow">Named engine roles</span><h2>Components with mixed status.</h2></div><a className="text-link" href="#/engines">Review role descriptions →</a></div>
+      <p style={{color:'var(--muted)'}}>Some related components have repository prototypes; others remain design roles. These cards are a role map, and their detail pages show local mock data—not live service output.</p>
       <CardGrid>{engineRoles.map(([name, code, description]) => <EngineCard key={name} name={name} code={code} description={description} onClick={() => navigate(`/engines/${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`)}/>)}</CardGrid>
     </section>
 
